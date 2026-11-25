@@ -35,7 +35,7 @@ export default function AboutSection({
     : null
 
   return (
-    <section className="bg-[#EDE8DC] flex flex-col lg:flex-row">
+    <section className="bg-[#EDE8DC] min-h-screen flex flex-col lg:flex-row">
 
       {/* ── LEFT: portrait + about text ──────────────────────── */}
       <div className="lg:w-1/2 flex flex-col sm:flex-row lg:border-r border-[#d4cfc5]">
@@ -90,20 +90,24 @@ export default function AboutSection({
           <div className="h-px bg-[#1a1a1a] w-10" />
         </div>
 
-          {/* row-span-2 on left card makes it auto-match the total height of both right cards + gap */}
-        <div className="grid grid-cols-2 gap-2">
+          {/*
+          flex-1 makes the grid fill remaining column height.
+          grid-rows-2 splits that height into 2 equal rows.
+          row-span-2 on left card makes it fill both rows automatically.
+        */}
+        <div className="flex-1 grid grid-cols-2 grid-rows-2 gap-2">
           {workItems[0] && (
             <div className="row-span-2 overflow-hidden">
               <WorkCard item={workItems[0]} className="h-full" mode="cover" objectPosition="left top" />
             </div>
           )}
           {workItems[1] && (
-            <div className="aspect-[3/2] overflow-hidden">
+            <div className="overflow-hidden">
               <WorkCard item={workItems[1]} className="h-full" mode="cover" objectPosition="center" />
             </div>
           )}
           {workItems[2] && (
-            <div className="aspect-[3/2] overflow-hidden">
+            <div className="overflow-hidden">
               <WorkCard item={workItems[2]} className="h-full" mode="cover" objectPosition="center" />
             </div>
           )}
