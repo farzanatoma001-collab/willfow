@@ -5,7 +5,7 @@ import { urlFor } from '@/sanity/lib/image'
 interface HeroProps {
   name?: string
   subtitleItems?: string[]
-  heroImage?: { asset: { url: string; _id: string }; alt?: string }
+  heroImage?: { asset: { _ref: string }; alt?: string }
   quoteText?: string
   quoteAuthor?: string
   navItems?: { label: string; href: string }[]
@@ -19,7 +19,7 @@ export default function HeroSection({
   quoteAuthor = 'JEFF GOLDBLUM',
   navItems,
 }: HeroProps) {
-  const imgSrc = heroImage
+  const imgSrc = heroImage?.asset
     ? urlFor(heroImage).width(1400).url()
     : null
 

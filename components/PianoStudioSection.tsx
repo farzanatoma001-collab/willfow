@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { urlFor } from '@/sanity/lib/image'
 
 interface PianoStudioProps {
-  logoImage?: { asset: { url: string; _id: string }; alt?: string }
+  logoImage?: { asset: { _ref: string }; alt?: string }
   title?: string
   tagline?: string
   description?: string
@@ -24,8 +24,8 @@ export default function PianoStudioSection({
     : null
 
   return (
-    <section className="bg-[#1a1c12] w-full">
-      <div className="max-w-7xl mx-auto px-6 py-14 md:px-14 md:py-20 flex flex-col md:flex-row items-center md:items-start gap-10 md:gap-16">
+    <section className="bg-[#1a1c12] w-full min-h-screen flex items-center">
+      <div className="w-full max-w-7xl mx-auto px-6 py-16 md:px-14 md:py-20 flex flex-col md:flex-row items-center md:items-center gap-10 md:gap-16">
 
         {/* Banner logo — left column, prominent */}
         {logoSrc ? (
@@ -36,6 +36,7 @@ export default function PianoStudioSection({
               width={384}
               height={128}
               className="object-contain w-full"
+            style={{ mixBlendMode: 'lighten' }}
             />
           </div>
         ) : (

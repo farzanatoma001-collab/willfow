@@ -7,7 +7,7 @@ interface ContactCtaProps {
   subtext?: string
   ctaLabel?: string
   ctaHref?: string
-  backgroundImage?: { asset: { url: string; _id: string }; alt?: string }
+  backgroundImage?: { asset: { _ref: string }; alt?: string }
 }
 
 export default function ContactCtaSection({
@@ -22,7 +22,7 @@ export default function ContactCtaSection({
     : null
 
   return (
-    <section className="relative bg-[#111] overflow-hidden min-h-[380px] md:min-h-[440px] flex items-center">
+    <section className="relative bg-[#111] overflow-hidden min-h-screen flex items-center">
       {bgSrc && (
         <Image
           src={bgSrc}

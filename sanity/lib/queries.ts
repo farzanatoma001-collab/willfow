@@ -4,12 +4,12 @@ export const homepageQuery = groq`*[_type == "homepage"][0]{
   hero{
     name,
     subtitleItems,
-    heroImage{ asset->{url, _id}, alt },
+    heroImage{ asset, alt },
     quoteText,
     quoteAuthor
   },
   about{
-    portraitImage{ asset->{url, _id}, alt },
+    portraitImage{ asset, alt },
     taglineLines,
     bio,
     aboutLinkLabel,
@@ -21,13 +21,13 @@ export const homepageQuery = groq`*[_type == "homepage"][0]{
       _id,
       title,
       role,
-      image{ asset->{url, _id}, alt },
-      logoImage{ asset->{url, _id}, alt },
+      image{ asset, alt },
+      logoImage{ asset, alt },
       linkHref
     }
   },
   pianoStudio{
-    logoImage{ asset->{url, _id}, alt },
+    logoImage{ asset, alt },
     title,
     tagline,
     description,
@@ -39,7 +39,7 @@ export const homepageQuery = groq`*[_type == "homepage"][0]{
     subtext,
     ctaLabel,
     ctaHref,
-    backgroundImage{ asset->{url, _id}, alt }
+    backgroundImage{ asset, alt }
   }
 }`
 
