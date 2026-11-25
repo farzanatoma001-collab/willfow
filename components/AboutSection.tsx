@@ -35,14 +35,13 @@ export default function AboutSection({
     : null
 
   return (
-    <section className="bg-[#EDE8DC] min-h-screen flex flex-col lg:flex-row">
+    <section className="bg-[#EDE8DC] flex flex-col lg:flex-row">
 
       {/* ── LEFT: portrait + about text ──────────────────────── */}
       <div className="lg:w-1/2 flex flex-col sm:flex-row lg:border-r border-[#d4cfc5]">
 
         {/* Portrait image */}
         <div className="sm:w-48 lg:w-56 flex-shrink-0 relative">
-          {/* On mobile: fixed aspect ratio. On desktop: stretches full column height */}
           <div className="aspect-[3/4] sm:aspect-auto sm:h-full relative">
             {portraitSrc ? (
               <Image
@@ -91,76 +90,58 @@ export default function AboutSection({
           <div className="h-px bg-[#1a1a1a] w-10" />
         </div>
 
-        {/* Grid — fixed height so fill images work */}
-        <div className="grid grid-cols-2 gap-2" style={{ height: 'clamp(340px, 55vh, 520px)' }}>
-
-          {/* Large card — left column, full height */}
+          {/* row-span-2 on left card makes it auto-match the total height of both right cards + gap */}
+        <div className="grid grid-cols-2 gap-2">
           {workItems[0] && (
-            <WorkCard item={workItems[0]} className="h-full" />
+            <div className="row-span-2 overflow-hidden">
+              <WorkCard item={workItems[0]} className="h-full" mode="cover" objectPosition="left top" />
+            </div>
           )}
-
-          {/* Two smaller cards — right column */}
-          <div className="flex flex-col gap-2 h-full">
-            {workItems[1] && (
-              <WorkCard item={workItems[1]} className="flex-1" />
-            )}
-            {workItems[2] && (
-              <WorkCard item={workItems[2]} className="flex-1" />
-            )}
-          </div>
+          {workItems[1] && (
+            <div className="aspect-[3/2] overflow-hidden">
+              <WorkCard item={workItems[1]} className="h-full" mode="cover" objectPosition="center" />
+            </div>
+          )}
+          {workItems[2] && (
+            <div className="aspect-[3/2] overflow-hidden">
+              <WorkCard item={workItems[2]} className="h-full" mode="cover" objectPosition="center" />
+            </div>
+          )}
         </div>
       </div>
     </section>
   )
 }
 
-function WorkCard({ item, className = '' }: { item: WorkItem; className?: string }) {
+function WorkCard({
+  item,
+  className = '',
+  mode = 'cover',
+  objectPosition = 'center',
+}: {
+  item: WorkItem
+  className?: string
+  mode?: 'cover' | 'contain'
+  objectPosition?: string
+}) {
   const imgSrc = item.image
-    ? urlFor(item.image).width(600).height(500).fit('crop').url()
-    : null
-  const logoSrc = item.logoImage
-    ? urlFor(item.logoImage).width(220).url()
+    ? urlFor(item.image).width(1000).url()
     : null
 
   const content = (
     <div className={`relative overflow-hidden group bg-[#c8c3b8] ${className}`}>
-      {/* Background photo */}
       {imgSrc && (
         <Image
           src={imgSrc}
           alt={item.image?.alt ?? item.title}
           fill
           className="object-cover group-hover:scale-105 transition-transform duration-500"
+          style={{ objectPosition }}
           sizes="(max-width: 1024px) 50vw, 25vw"
         />
       )}
 
-      {/* Subtle dark overlay */}
-      <div className="absolute inset-0 bg-black/25 group-hover:bg-black/35 transition-colors" />
-
-      {/* Logo overlay — centred */}
-      {logoSrc && (
-        <div className="absolute inset-0 flex items-center justify-center p-4">
-          <div className="relative w-28 h-16">
-            <Image
-              src={logoSrc}
-              alt={item.logoImage?.alt ?? item.title}
-              fill
-              className="object-contain drop-shadow-xl"
-              sizes="112px"
-            />
-          </div>
-        </div>
-      )}
-
-      {/* Role badge — bottom */}
-      {item.role && (
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/75 to-transparent pt-8 pb-2 px-3">
-          <p className="text-white text-[9px] md:text-[10px] tracking-[0.2em] font-sans uppercase">
-            {item.role}
-          </p>
-        </div>
-      )}
+      <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors" />
     </div>
   )
 
