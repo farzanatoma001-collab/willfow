@@ -44,5 +44,6 @@ export const homepageQuery = groq`*[_type == "homepage"][0]{
 }`
 
 export const navigationQuery = groq`*[_type == "navigation"][0]{
+  logo{ asset, alt },
   items[]{ label, href }
 }`

@@ -9,6 +9,7 @@ interface HeroProps {
   quoteText?: string
   quoteAuthor?: string
   navItems?: { label: string; href: string }[]
+  navLogo?: { asset: { _ref: string }; alt?: string }
 }
 
 export default function HeroSection({
@@ -18,6 +19,7 @@ export default function HeroSection({
   quoteText = '"A tour de force on the keys."',
   quoteAuthor = 'JEFF GOLDBLUM',
   navItems,
+  navLogo,
 }: HeroProps) {
   const imgSrc = heroImage?.asset
     ? urlFor(heroImage).width(1400).url()
@@ -46,7 +48,7 @@ export default function HeroSection({
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#2A2D1E]/60 to-transparent" />
 
       {/* Navigation */}
-      <SiteNav items={navItems} />
+      <SiteNav items={navItems} logo={navLogo} />
 
       {/* Content */}
       <div className="relative z-10 min-h-screen flex flex-col justify-between px-6 py-8 md:px-14 md:py-10">

@@ -24,6 +24,7 @@ export default async function HomePage() {
         quoteText={homepage?.hero?.quoteText}
         quoteAuthor={homepage?.hero?.quoteAuthor}
         navItems={navItems}
+        navLogo={navigation?.logo}
       />
 
       <AboutSection
