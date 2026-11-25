@@ -37,40 +37,38 @@ export default function AboutSection({
   return (
     <section className="bg-[#EDE8DC] flex flex-col lg:flex-row">
 
-      {/* ── LEFT: portrait + about text ─── 40% wide on desktop ── */}
-      <div className="lg:w-2/5 flex flex-col sm:flex-row lg:border-r border-[#d4cfc5]">
+      {/* ── LEFT: portrait strip + about text ─── 40% wide on desktop ── */}
+      <div className="lg:w-2/5 flex flex-row lg:border-r border-[#d4cfc5]">
 
-        {/* Portrait image — fixed 224px height on mobile, full-height strip on sm+ */}
-        <div className="sm:w-48 lg:w-56 flex-shrink-0 relative">
-          <div className="h-56 sm:h-full relative">
-            {portraitSrc ? (
-              <Image
-                src={portraitSrc}
-                alt={portraitImage?.alt ?? 'Will Fowler'}
-                fill
-                className="object-cover object-top"
-                sizes="(max-width: 640px) 100vw, 192px"
-              />
-            ) : (
-              <div className="absolute inset-0 bg-[#c8c3b8]" />
-            )}
-          </div>
+        {/* Portrait — fixed-width strip beside text on all screen sizes */}
+        <div className="w-36 sm:w-48 lg:w-56 flex-shrink-0 relative self-stretch min-h-[220px]">
+          {portraitSrc ? (
+            <Image
+              src={portraitSrc}
+              alt={portraitImage?.alt ?? 'Will Fowler'}
+              fill
+              className="object-cover object-top"
+              sizes="(max-width: 640px) 144px, (max-width: 1024px) 192px, 224px"
+            />
+          ) : (
+            <div className="absolute inset-0 bg-[#c8c3b8]" />
+          )}
         </div>
 
         {/* About text */}
-        <div className="flex flex-col justify-center px-7 pt-8 pb-6 lg:px-10 lg:py-16 flex-1">
-          <div className="mb-5">
+        <div className="flex flex-col justify-center px-5 sm:px-7 py-8 sm:py-10 lg:px-10 lg:py-16 flex-1">
+          <div className="mb-4 sm:mb-5">
             {taglineLines.map((line, i) => (
               <p
                 key={i}
                 className="font-serif text-[#1a1a1a] leading-tight"
-                style={{ fontSize: 'clamp(1.4rem, 2.5vw, 2rem)', fontWeight: 600 }}
+                style={{ fontSize: 'clamp(1.05rem, 3vw, 2rem)', fontWeight: 600 }}
               >
                 {line}
               </p>
             ))}
           </div>
-          <p className="text-sm text-[#555] leading-relaxed font-sans mb-6 max-w-xs">{bio}</p>
+          <p className="text-xs sm:text-sm text-[#555] leading-relaxed font-sans mb-5 max-w-xs">{bio}</p>
           <Link
             href={aboutLinkHref}
             className="inline-flex items-center gap-2 text-[11px] tracking-[0.22em] font-sans text-[#1a1a1a] border-b border-[#1a1a1a] pb-0.5 hover:opacity-50 transition-opacity w-fit"
@@ -83,7 +81,6 @@ export default function AboutSection({
       {/* ── RIGHT: selected work grid ─── 60% wide on desktop ─── */}
       <div className="lg:w-3/5 flex flex-col pt-6 lg:pt-14 px-6 lg:pl-0 lg:pr-8">
 
-        {/* Section label */}
         <div className="flex items-center gap-4 mb-5 lg:pl-8">
           <span className="text-[11px] tracking-[0.28em] font-sans text-[#1a1a1a] font-semibold">
             {selectedWorkTitle}
@@ -92,23 +89,23 @@ export default function AboutSection({
         </div>
 
         {/*
-          Left card uses row-span-2: its height = right-card-height × 2 + gap (auto-matched by CSS grid).
-          Right cards use aspect-[3/2] to match the landscape image ratio exactly → no cropping.
+          Mobile: single column — each card full width, clearly visible.
+          sm+: two columns — left card row-span-2 (tall portrait), right cards landscape.
         */}
-        <div className="grid grid-cols-2 gap-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
           {workItems[0] && (
-            <div className="row-span-2 overflow-hidden">
+            <div className="overflow-hidden aspect-[4/3] sm:aspect-auto sm:row-span-2">
               <WorkCard item={workItems[0]} className="h-full" objectPosition="center top" />
             </div>
           )}
           {workItems[1] && (
             <div className="aspect-[3/2] overflow-hidden">
-              <WorkCard item={workItems[1]} className="h-full" objectPosition="right center" />
+              <WorkCard item={workItems[1]} className="h-full" objectPosition="center center" />
             </div>
           )}
           {workItems[2] && (
             <div className="aspect-[3/2] overflow-hidden">
-              <WorkCard item={workItems[2]} className="h-full" objectPosition="right center" />
+              <WorkCard item={workItems[2]} className="h-full" objectPosition="center center" />
             </div>
           )}
         </div>
@@ -139,7 +136,7 @@ function WorkCard({
           fill
           className="object-cover group-hover:scale-105 transition-transform duration-500"
           style={{ objectPosition }}
-          sizes="(max-width: 1024px) 50vw, 30vw"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 30vw"
         />
       )}
       <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors" />
