@@ -35,10 +35,10 @@ export default function AboutSection({
     : null
 
   return (
-    <section className="bg-[#EDE8DC] min-h-screen flex flex-col lg:flex-row">
+    <section className="bg-[#EDE8DC] flex flex-col lg:flex-row">
 
-      {/* ── LEFT: portrait + about text ──────────────────────── */}
-      <div className="lg:w-1/2 flex flex-col sm:flex-row lg:border-r border-[#d4cfc5]">
+      {/* ── LEFT: portrait + about text ─── 40% wide on desktop ── */}
+      <div className="lg:w-2/5 flex flex-col sm:flex-row lg:border-r border-[#d4cfc5]">
 
         {/* Portrait image */}
         <div className="sm:w-48 lg:w-56 flex-shrink-0 relative">
@@ -80,35 +80,36 @@ export default function AboutSection({
         </div>
       </div>
 
-      {/* ── RIGHT: selected work grid ─────────────────────────── */}
-      <div className="lg:w-1/2 flex flex-col px-6 py-10 lg:px-8 lg:py-14">
-        {/* Section label */}
-        <div className="flex items-center gap-4 mb-5">
+      {/* ── RIGHT: selected work grid ─── 60% wide on desktop ─── */}
+      {/* No left padding — grid starts at the column edge. Label has its own indent. */}
+      <div className="lg:w-3/5 flex flex-col py-10 lg:py-14 pr-6 lg:pr-8">
+
+        {/* Section label — indented so it sits above the left card */}
+        <div className="flex items-center gap-4 mb-5 pl-6 lg:pl-8">
           <span className="text-[11px] tracking-[0.28em] font-sans text-[#1a1a1a] font-semibold">
             {selectedWorkTitle}
           </span>
           <div className="h-px bg-[#1a1a1a] w-10" />
         </div>
 
-          {/*
-          flex-1 makes the grid fill remaining column height.
-          grid-rows-2 splits that height into 2 equal rows.
-          row-span-2 on left card makes it fill both rows automatically.
+        {/*
+          Left card uses row-span-2: its height = right-card-height × 2 + gap (auto-matched by CSS grid).
+          Right cards use aspect-[3/2] to match the landscape image ratio exactly → no cropping.
         */}
-        <div className="flex-1 grid grid-cols-2 grid-rows-2 gap-2">
+        <div className="grid grid-cols-2 gap-2">
           {workItems[0] && (
             <div className="row-span-2 overflow-hidden">
-              <WorkCard item={workItems[0]} className="h-full" mode="cover" objectPosition="left top" />
+              <WorkCard item={workItems[0]} className="h-full" objectPosition="center top" />
             </div>
           )}
           {workItems[1] && (
-            <div className="overflow-hidden">
-              <WorkCard item={workItems[1]} className="h-full" mode="cover" objectPosition="center" />
+            <div className="aspect-[3/2] overflow-hidden">
+              <WorkCard item={workItems[1]} className="h-full" objectPosition="right center" />
             </div>
           )}
           {workItems[2] && (
-            <div className="overflow-hidden">
-              <WorkCard item={workItems[2]} className="h-full" mode="cover" objectPosition="center" />
+            <div className="aspect-[3/2] overflow-hidden">
+              <WorkCard item={workItems[2]} className="h-full" objectPosition="right center" />
             </div>
           )}
         </div>
@@ -120,16 +121,14 @@ export default function AboutSection({
 function WorkCard({
   item,
   className = '',
-  mode = 'cover',
   objectPosition = 'center',
 }: {
   item: WorkItem
   className?: string
-  mode?: 'cover' | 'contain'
   objectPosition?: string
 }) {
   const imgSrc = item.image
-    ? urlFor(item.image).width(1000).url()
+    ? urlFor(item.image).width(1200).url()
     : null
 
   const content = (
@@ -141,10 +140,9 @@ function WorkCard({
           fill
           className="object-cover group-hover:scale-105 transition-transform duration-500"
           style={{ objectPosition }}
-          sizes="(max-width: 1024px) 50vw, 25vw"
+          sizes="(max-width: 1024px) 50vw, 30vw"
         />
       )}
-
       <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors" />
     </div>
   )
