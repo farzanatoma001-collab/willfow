@@ -29,7 +29,7 @@ export default function ContactCtaSection({
           alt={backgroundImage?.alt ?? 'Will Fowler performance'}
           fill
           className="object-cover opacity-55"
-          style={{ objectPosition: 'center 20%' }}
+          style={{ objectPosition: 'center center' }}
           sizes="(max-width: 1024px) 100vw, 50vw"
         />
       )}
