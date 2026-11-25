@@ -9,8 +9,8 @@ export const instant = false
 
 export default async function HomePage() {
   const [homepage, navigation] = await Promise.all([
-    client.fetch(homepageQuery),
-    client.fetch(navigationQuery),
+    client.fetch(homepageQuery, {}, { cache: 'no-store' }),
+    client.fetch(navigationQuery, {}, { cache: 'no-store' }),
   ])
 
   const navItems = navigation?.items
@@ -24,7 +24,6 @@ export default async function HomePage() {
         quoteText={homepage?.hero?.quoteText}
         quoteAuthor={homepage?.hero?.quoteAuthor}
         navItems={navItems}
-        navLogo={navigation?.logo}
       />
 
       <AboutSection
@@ -37,22 +36,24 @@ export default async function HomePage() {
         workItems={homepage?.selectedWork?.workItems}
       />
 
-      <PianoStudioSection
-        logoImage={homepage?.pianoStudio?.logoImage}
-        title={homepage?.pianoStudio?.title}
-        tagline={homepage?.pianoStudio?.tagline}
-        description={homepage?.pianoStudio?.description}
-        ctaLabel={homepage?.pianoStudio?.ctaLabel}
-        ctaHref={homepage?.pianoStudio?.ctaHref}
-      />
-
-      <ContactCtaSection
-        heading={homepage?.contactCta?.heading}
-        subtext={homepage?.contactCta?.subtext}
-        ctaLabel={homepage?.contactCta?.ctaLabel}
-        ctaHref={homepage?.contactCta?.ctaHref}
-        backgroundImage={homepage?.contactCta?.backgroundImage}
-      />
+      {/* Piano Studio + Contact CTA — side by side */}
+      <div className="grid grid-cols-1 lg:grid-cols-2">
+        <PianoStudioSection
+          logoImage={homepage?.pianoStudio?.logoImage}
+          title={homepage?.pianoStudio?.title}
+          tagline={homepage?.pianoStudio?.tagline}
+          description={homepage?.pianoStudio?.description}
+          ctaLabel={homepage?.pianoStudio?.ctaLabel}
+          ctaHref={homepage?.pianoStudio?.ctaHref}
+        />
+        <ContactCtaSection
+          heading={homepage?.contactCta?.heading}
+          subtext={homepage?.contactCta?.subtext}
+          ctaLabel={homepage?.contactCta?.ctaLabel}
+          ctaHref={homepage?.contactCta?.ctaHref}
+          backgroundImage={homepage?.contactCta?.backgroundImage}
+        />
+      </div>
     </main>
   )
 }
