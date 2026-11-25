@@ -40,9 +40,9 @@ export default function AboutSection({
       {/* ── LEFT: portrait + about text ─── 40% wide on desktop ── */}
       <div className="lg:w-2/5 flex flex-col sm:flex-row lg:border-r border-[#d4cfc5]">
 
-        {/* Portrait image */}
+        {/* Portrait image — fixed 224px height on mobile, full-height strip on sm+ */}
         <div className="sm:w-48 lg:w-56 flex-shrink-0 relative">
-          <div className="aspect-[3/4] sm:aspect-auto sm:h-full relative">
+          <div className="h-56 sm:h-full relative">
             {portraitSrc ? (
               <Image
                 src={portraitSrc}
@@ -58,7 +58,7 @@ export default function AboutSection({
         </div>
 
         {/* About text */}
-        <div className="flex flex-col justify-center px-7 py-10 lg:px-10 lg:py-16 flex-1">
+        <div className="flex flex-col justify-center px-7 pt-8 pb-6 lg:px-10 lg:py-16 flex-1">
           <div className="mb-5">
             {taglineLines.map((line, i) => (
               <p
@@ -82,7 +82,7 @@ export default function AboutSection({
 
       {/* ── RIGHT: selected work grid ─── 60% wide on desktop ─── */}
       {/* No left padding — grid starts at the column edge. Label has its own indent. */}
-      <div className="lg:w-3/5 flex flex-col pt-10 lg:pt-14 pr-6 lg:pr-8">
+      <div className="lg:w-3/5 flex flex-col pt-6 lg:pt-14 pr-6 lg:pr-8">
 
         {/* Section label — indented so it sits above the left card */}
         <div className="flex items-center gap-4 mb-5 pl-6 lg:pl-8">

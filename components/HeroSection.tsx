@@ -54,8 +54,8 @@ export default function HeroSection({
         {/* Nav clearance — keeps name fully below the nav bar */}
         <div className="h-28 md:h-32 flex-shrink-0" />
 
-        {/* Name + subtitle + scroll — centred in remaining height */}
-        <div className="flex-1 flex flex-col justify-center pb-20">
+        {/* Name + subtitle + quote + scroll — centred in remaining height */}
+        <div className="flex-1 flex flex-col justify-center pb-16 md:pb-20">
           <h1
             className="font-serif text-white leading-none tracking-tight"
             style={{ fontSize: 'clamp(3.5rem, 11vw, 8.5rem)', fontWeight: 300 }}
@@ -68,24 +68,24 @@ export default function HeroSection({
             {subtitleItems.join(' · ')}
           </p>
 
+          {/* Mobile quote — sits below subtitle, always visible in viewport */}
+          <div className="md:hidden mt-10 max-w-[260px]">
+            <blockquote
+              className="font-serif italic text-white leading-snug"
+              style={{ fontSize: 'clamp(1.2rem, 5vw, 1.6rem)', fontWeight: 300 }}
+            >
+              {quoteText}
+            </blockquote>
+            <div className="w-8 h-px bg-white/40 mt-3 mb-2" />
+            <p className="text-white/55 text-[10px] tracking-[0.18em] font-sans">— {quoteAuthor}</p>
+          </div>
+
           {/* Scroll indicator */}
           <div className="hidden sm:flex flex-col gap-1 mt-10">
             <span className="text-white/35 text-[9px] tracking-[0.2em] font-sans">SCROLL</span>
             <div className="w-px h-5 bg-white/25 ml-0.5" />
             <span className="text-white/35 font-sans text-xs">↓</span>
           </div>
-        </div>
-
-        {/* Mobile quote — before bottom padding */}
-        <div className="md:hidden pb-12 max-w-[260px]">
-          <blockquote
-            className="font-serif italic text-white leading-snug"
-            style={{ fontSize: 'clamp(1.2rem, 5vw, 1.6rem)', fontWeight: 300 }}
-          >
-            {quoteText}
-          </blockquote>
-          <div className="w-8 h-px bg-white/40 mt-3 mb-2" />
-          <p className="text-white/55 text-[10px] tracking-[0.18em] font-sans">— {quoteAuthor}</p>
         </div>
       </div>
 

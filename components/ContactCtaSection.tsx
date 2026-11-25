@@ -22,7 +22,7 @@ export default function ContactCtaSection({
     : null
 
   return (
-    <section className="relative bg-[#111] overflow-hidden min-h-[55vh] lg:min-h-[70vh] h-full flex items-center w-full">
+    <section className="relative bg-[#111] overflow-hidden min-h-[55vh] lg:min-h-[70vh] h-full flex items-start lg:items-center w-full">
       {bgSrc && (
         <Image
           src={bgSrc}
