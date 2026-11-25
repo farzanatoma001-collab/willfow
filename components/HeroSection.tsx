@@ -20,7 +20,7 @@ export default function HeroSection({
   navItems,
 }: HeroProps) {
   const imgSrc = heroImage
-    ? urlFor(heroImage).width(1400).height(900).fit('crop').url()
+    ? urlFor(heroImage).width(1400).url()
     : null
 
   return (
@@ -32,7 +32,8 @@ export default function HeroSection({
           alt={heroImage?.alt ?? name}
           fill
           priority
-          className="object-cover object-top opacity-70"
+          className="object-cover opacity-70"
+          style={{ objectPosition: '60% 15%' }}
           sizes="100vw"
         />
       ) : (
