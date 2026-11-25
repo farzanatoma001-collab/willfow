@@ -22,6 +22,7 @@ export const homepageQuery = groq`*[_type == "homepage"][0]{
       title,
       role,
       image{ asset->{url, _id}, alt },
+      logoImage{ asset->{url, _id}, alt },
       linkHref
     }
   },

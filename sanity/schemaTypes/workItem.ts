@@ -14,6 +14,13 @@ export const workItemType = defineType({
       options: { hotspot: true },
       fields: [defineField({ name: 'alt', title: 'Alt text', type: 'string' })],
     }),
+    defineField({
+      name: 'logoImage',
+      title: 'Logo overlay (optional)',
+      type: 'image',
+      options: { hotspot: true },
+      fields: [defineField({ name: 'alt', title: 'Alt text', type: 'string' })],
+    }),
     defineField({ name: 'linkHref', title: 'Link URL', type: 'url' }),
     defineField({ name: 'order', title: 'Display Order', type: 'number' }),
   ],

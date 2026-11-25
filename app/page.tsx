@@ -36,24 +36,22 @@ export default async function HomePage() {
         workItems={homepage?.selectedWork?.workItems}
       />
 
-      <div className="grid md:grid-cols-2">
-        <PianoStudioSection
-          logoImage={homepage?.pianoStudio?.logoImage}
-          title={homepage?.pianoStudio?.title}
-          tagline={homepage?.pianoStudio?.tagline}
-          description={homepage?.pianoStudio?.description}
-          ctaLabel={homepage?.pianoStudio?.ctaLabel}
-          ctaHref={homepage?.pianoStudio?.ctaHref}
-        />
+      <PianoStudioSection
+        logoImage={homepage?.pianoStudio?.logoImage}
+        title={homepage?.pianoStudio?.title}
+        tagline={homepage?.pianoStudio?.tagline}
+        description={homepage?.pianoStudio?.description}
+        ctaLabel={homepage?.pianoStudio?.ctaLabel}
+        ctaHref={homepage?.pianoStudio?.ctaHref}
+      />
 
-        <ContactCtaSection
-          heading={homepage?.contactCta?.heading}
-          subtext={homepage?.contactCta?.subtext}
-          ctaLabel={homepage?.contactCta?.ctaLabel}
-          ctaHref={homepage?.contactCta?.ctaHref}
-          backgroundImage={homepage?.contactCta?.backgroundImage}
-        />
-      </div>
+      <ContactCtaSection
+        heading={homepage?.contactCta?.heading}
+        subtext={homepage?.contactCta?.subtext}
+        ctaLabel={homepage?.contactCta?.ctaLabel}
+        ctaHref={homepage?.contactCta?.ctaHref}
+        backgroundImage={homepage?.contactCta?.backgroundImage}
+      />
     </main>
   )
 }
