@@ -20,63 +20,55 @@ export default function PianoStudioSection({
   ctaHref = '/educator',
 }: PianoStudioProps) {
   const logoSrc = logoImage
-    ? urlFor(logoImage).width(200).height(200).fit('crop').url()
+    ? urlFor(logoImage).width(300).height(300).fit('crop').url()
     : null
 
   return (
-    <section className="bg-[#1a1c12] py-16 px-6 md:px-14">
-      <div className="max-w-7xl mx-auto flex gap-10 items-center">
+    <section className="bg-[#1a1c12] py-12 px-6 md:py-16 md:px-14">
+      <div className="max-w-2xl mx-auto md:mx-0 flex flex-col sm:flex-row gap-6 md:gap-10 items-center sm:items-start">
 
-        {/* Logo / signature */}
-        <div className="flex-shrink-0 w-28 md:w-36 flex flex-col items-center">
+        {/* Logo */}
+        <div className="flex-shrink-0 w-24 md:w-32">
           {logoSrc ? (
             <Image
               src={logoSrc}
               alt={logoImage?.alt ?? 'Will Fowler Piano Studio logo'}
-              width={144}
-              height={144}
-              className="object-contain"
+              width={128}
+              height={128}
+              className="object-contain w-full"
             />
           ) : (
-            /* Placeholder signature mark */
-            <div className="w-28 h-28 flex items-end justify-center">
-              <svg viewBox="0 0 100 120" fill="none" className="w-24 opacity-80">
-                <path
-                  d="M20 100 C30 60, 50 20, 60 50 C70 80, 55 100, 45 90"
-                  stroke="white"
-                  strokeWidth="2"
-                  fill="none"
-                />
-                <line x1="30" y1="110" x2="80" y2="110" stroke="white" strokeWidth="1" opacity="0.5" />
-                <line x1="30" y1="115" x2="60" y2="115" stroke="white" strokeWidth="1" opacity="0.3" />
-                <line x1="30" y1="120" x2="45" y2="120" stroke="white" strokeWidth="1" opacity="0.2" />
+            <div className="w-24 h-24 opacity-60 flex items-center justify-center">
+              <svg viewBox="0 0 80 100" fill="none" className="w-16">
+                <path d="M15 85 C25 50, 45 15, 55 42 C65 70, 48 88, 38 76" stroke="white" strokeWidth="1.5" fill="none"/>
+                <line x1="20" y1="92" x2="65" y2="92" stroke="white" strokeWidth="0.8" opacity="0.5"/>
               </svg>
             </div>
           )}
         </div>
 
-        {/* Divider */}
-        <div className="hidden md:block w-px h-28 bg-white/20" />
+        {/* Divider — visible on sm+ */}
+        <div className="hidden sm:block w-px h-24 bg-white/20 self-center" />
 
         {/* Text */}
-        <div>
-          <p className="text-white/40 text-[10px] tracking-[0.2em] font-sans mb-2">THE</p>
+        <div className="text-center sm:text-left">
+          <p className="text-white/40 text-[9px] tracking-[0.2em] font-sans mb-1">THE</p>
           <h2
             className="font-serif text-white leading-tight mb-3"
-            style={{ fontSize: 'clamp(1.5rem, 3vw, 2.4rem)', fontWeight: 400 }}
+            style={{ fontSize: 'clamp(1.3rem, 3.5vw, 2.2rem)', fontWeight: 400 }}
           >
             {title.replace(/^THE\s+/i, '')}
           </h2>
-          <div className="w-16 h-px bg-white/30 mb-4" />
-          <p className="text-white/50 text-xs tracking-[0.2em] font-sans mb-5 lowercase">
+          <div className="w-12 h-px bg-white/30 mb-3 mx-auto sm:mx-0" />
+          <p className="text-white/50 text-[10px] tracking-[0.2em] font-sans mb-4 lowercase">
             {tagline}
           </p>
-          <p className="text-white/70 text-sm font-sans leading-relaxed max-w-md mb-6">
+          <p className="text-white/70 text-xs md:text-sm font-sans leading-relaxed max-w-sm mb-6 mx-auto sm:mx-0">
             {description}
           </p>
           <Link
             href={ctaHref}
-            className="inline-flex items-center gap-2 text-xs tracking-[0.2em] font-sans text-white/80 border-b border-white/40 pb-0.5 hover:text-white hover:border-white transition-colors"
+            className="inline-flex items-center gap-2 text-[10px] md:text-xs tracking-[0.2em] font-sans text-white/70 border-b border-white/40 pb-0.5 hover:text-white hover:border-white transition-colors"
           >
             {ctaLabel} →
           </Link>

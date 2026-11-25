@@ -1,18 +1,18 @@
 import type { Metadata } from 'next'
-import { Cormorant_Garamond, Inter } from 'next/font/google'
+import { Cinzel, Raleway } from 'next/font/google'
 import './globals.css'
 
-const cormorant = Cormorant_Garamond({
-  variable: '--font-cormorant',
+const cinzel = Cinzel({
+  variable: '--font-cinzel',
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
-  style: ['normal', 'italic'],
+  weight: ['400', '500', '600', '700'],
   display: 'swap',
 })
 
-const inter = Inter({
-  variable: '--font-inter',
+const raleway = Raleway({
+  variable: '--font-raleway',
   subsets: ['latin'],
+  weight: ['300', '400', '500', '600'],
   display: 'swap',
 })
 
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${inter.variable}`}>
+    <html lang="en" className={`${cinzel.variable} ${raleway.variable}`}>
       <body className="bg-[#EDE8DC] text-[#1a1a1a] antialiased">{children}</body>
     </html>
   )

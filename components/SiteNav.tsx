@@ -20,13 +20,13 @@ export default function SiteNav({ items }: SiteNavProps) {
   const navItems = items ?? defaultItems
 
   return (
-    <nav className="absolute top-0 right-0 z-20 p-8">
-      <ul className="flex items-center gap-8">
+    <nav className="absolute top-0 right-0 z-20 px-5 py-5 md:px-10 md:py-8">
+      <ul className="flex items-center gap-4 md:gap-8 flex-wrap justify-end">
         {navItems.map((item) => (
           <li key={item.href}>
             <Link
               href={item.href}
-              className="text-white/90 hover:text-white text-xs tracking-[0.2em] font-sans transition-colors"
+              className="text-white/80 hover:text-white text-[9px] md:text-xs tracking-[0.18em] font-sans transition-colors"
             >
               {item.label}
             </Link>

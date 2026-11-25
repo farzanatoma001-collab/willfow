@@ -24,7 +24,7 @@ export default function HeroSection({
     : null
 
   return (
-    <section className="relative w-full h-screen min-h-[600px] bg-[#2A2D1E] overflow-hidden">
+    <section className="relative w-full min-h-screen bg-[#2A2D1E] overflow-hidden">
       {/* Background hero image */}
       {imgSrc ? (
         <Image
@@ -32,56 +32,62 @@ export default function HeroSection({
           alt={heroImage?.alt ?? name}
           fill
           priority
-          className="object-cover object-center opacity-70"
+          className="object-cover object-top opacity-70"
           sizes="100vw"
         />
       ) : (
         <div className="absolute inset-0 bg-gradient-to-br from-[#2A2D1E] to-[#1a1c12]" />
       )}
 
-      {/* Overlay gradient — left fades to olive, right keeps image */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#2A2D1E]/90 via-[#2A2D1E]/30 to-transparent" />
+      {/* Left-side fade overlay */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#2A2D1E]/95 via-[#2A2D1E]/50 to-transparent" />
+      {/* Bottom fade */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#2A2D1E]/60 to-transparent" />
 
       {/* Navigation */}
       <SiteNav items={navItems} />
 
       {/* Content */}
-      <div className="relative z-10 h-full flex flex-col justify-between p-10 md:p-14">
+      <div className="relative z-10 min-h-screen flex flex-col justify-between px-6 py-8 md:px-14 md:py-10">
+
+        {/* Spacer for nav */}
+        <div className="h-12 md:h-8" />
+
         {/* Name + subtitle */}
-        <div className="mt-auto mb-auto pt-24">
+        <div className="mt-4 md:mt-0">
           <h1
             className="font-serif text-white leading-none tracking-tight"
-            style={{ fontSize: 'clamp(4rem, 10vw, 9rem)', fontWeight: 300 }}
+            style={{ fontSize: 'clamp(3.2rem, 12vw, 9rem)', fontWeight: 300 }}
           >
             {name.split(' ').map((word, i) => (
-              <span key={i} className="block">
-                {word}
-              </span>
+              <span key={i} className="block">{word}</span>
             ))}
           </h1>
-          <p className="mt-5 text-white/70 text-xs tracking-[0.25em] font-sans">
+          <p className="mt-4 text-white/70 text-[10px] md:text-xs tracking-[0.2em] font-sans">
             {subtitleItems.join(' · ')}
           </p>
 
-          {/* Scroll */}
-          <div className="mt-10 flex flex-col gap-2">
-            <span className="text-white/50 text-[10px] tracking-[0.2em] font-sans">SCROLL</span>
-            <div className="w-px h-5 bg-white/40 ml-1" />
-            <span className="text-white/50 font-sans text-xs">↓</span>
+          {/* Scroll indicator — hidden on very small screens */}
+          <div className="hidden sm:flex flex-col gap-1 mt-8">
+            <span className="text-white/40 text-[9px] tracking-[0.2em] font-sans">SCROLL</span>
+            <div className="w-px h-5 bg-white/30 ml-0.5" />
+            <span className="text-white/40 font-sans text-xs">↓</span>
           </div>
         </div>
 
-        {/* Quote — right side */}
-        <div className="absolute right-10 md:right-14 top-1/2 -translate-y-1/2 max-w-xs text-right">
+        {/* Quote — bottom right on mobile, mid-right on desktop */}
+        <div className="mt-10 md:mt-0 md:absolute md:right-10 lg:right-14 md:top-1/2 md:-translate-y-1/2 max-w-[260px] md:max-w-xs text-left md:text-right self-end md:self-auto">
           <blockquote
             className="font-serif italic text-white leading-snug"
-            style={{ fontSize: 'clamp(1.6rem, 3.5vw, 2.8rem)', fontWeight: 300 }}
+            style={{ fontSize: 'clamp(1.3rem, 4vw, 2.8rem)', fontWeight: 300 }}
           >
             {quoteText}
           </blockquote>
-          <div className="w-12 h-px bg-white/40 ml-auto mt-4 mb-3" />
-          <p className="text-white/70 text-xs tracking-[0.2em] font-sans">— {quoteAuthor}</p>
+          <div className="w-10 h-px bg-white/40 mt-3 mb-2 md:ml-auto" />
+          <p className="text-white/60 text-[10px] tracking-[0.18em] font-sans">— {quoteAuthor}</p>
         </div>
+
+        <div className="h-6 md:h-4" />
       </div>
     </section>
   )
