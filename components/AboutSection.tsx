@@ -40,22 +40,24 @@ export default function AboutSection({
       {/* ── LEFT: portrait fills same height as work grid, text underneath ─── 40% wide on desktop ── */}
       <div className="lg:w-2/5 flex flex-col lg:border-r border-[#d4cfc5]">
 
-        {/* Top gap — matches right side pt-6 lg:pt-14 */}
-        <div className="h-6 lg:h-14 flex-shrink-0" />
+        {/* Top gap — pt-14 (right side) + SELECTED WORK label row (~44px) to align with first card */}
+        <div className="h-6 lg:h-[100px] flex-shrink-0" />
 
-        {/* Portrait — flex-1 so it fills the same height as the work cards on the right */}
-        <div className="relative flex-1 min-h-[280px] overflow-hidden">
-          {portraitSrc ? (
-            <Image
-              src={portraitSrc}
-              alt={portraitImage?.alt ?? 'Will Fowler'}
-              fill
-              className="object-cover object-top"
-              sizes="(max-width: 1024px) 100vw, 40vw"
-            />
-          ) : (
-            <div className="absolute inset-0 bg-[#c8c3b8]" />
-          )}
+        {/* Portrait — flex-1 fills height; pl/pb match right side's pr and pb */}
+        <div className="flex-1 min-h-[280px] pl-6 lg:pl-8 pb-6 lg:pb-14">
+          <div className="relative h-full overflow-hidden">
+            {portraitSrc ? (
+              <Image
+                src={portraitSrc}
+                alt={portraitImage?.alt ?? 'Will Fowler'}
+                fill
+                className="object-cover object-top"
+                sizes="(max-width: 1024px) 100vw, 40vw"
+              />
+            ) : (
+              <div className="absolute inset-0 bg-[#c8c3b8]" />
+            )}
+          </div>
         </div>
 
         {/* About text — underneath the portrait */}
@@ -95,7 +97,7 @@ export default function AboutSection({
           Row 1: Choir of Man spans full width — landscape image shown complete.
           Row 2: SIFF + Green Room side by side.
         */}
-        <div className="grid grid-cols-2 gap-2">
+        <div className="grid grid-cols-2 gap-2 pb-6 lg:pb-14">
           {workItems[0] && (
             <div className="col-span-2 aspect-[3/2] overflow-hidden">
               <WorkCard item={workItems[0]} className="h-full" objectPosition="center center" />
