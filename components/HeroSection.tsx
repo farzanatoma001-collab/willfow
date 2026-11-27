@@ -6,6 +6,7 @@ interface HeroProps {
   name?: string
   subtitleItems?: string[]
   heroImage?: { asset: { _ref: string }; alt?: string }
+  heroImageDesktop?: { asset: { _ref: string }; alt?: string }
   quoteText?: string
   quoteAuthor?: string
   navItems?: { label: string; href: string }[]
@@ -15,28 +16,45 @@ export default function HeroSection({
   name = 'WILL FOWLER',
   subtitleItems = ['ACTOR-MUSICIAN', 'MUSICAL DIRECTOR', 'CREATIVE', 'EDUCATOR'],
   heroImage,
+  heroImageDesktop,
   quoteText = '"A tour de force on the keys."',
   quoteAuthor = 'JEFF GOLDBLUM',
   navItems,
 }: HeroProps) {
-  const imgSrc = heroImage?.asset
-    ? urlFor(heroImage).width(1400).url()
+  const mobileImgSrc = heroImage?.asset
+    ? urlFor(heroImage).width(800).url()
     : null
+  const desktopImgSrc = heroImageDesktop?.asset
+    ? urlFor(heroImageDesktop).width(1800).url()
+    : mobileImgSrc
 
   return (
     <section className="relative w-full min-h-screen bg-[#2A2D1E] overflow-hidden">
-      {/* Background hero image */}
-      {imgSrc ? (
+      {/* Mobile background image (hidden on md+) */}
+      {mobileImgSrc && (
         <Image
-          src={imgSrc}
+          src={mobileImgSrc}
           alt={heroImage?.alt ?? name}
           fill
           priority
-          className="object-cover opacity-70"
+          className="md:hidden object-cover opacity-70"
           style={{ objectPosition: '62% 10%' }}
           sizes="100vw"
         />
-      ) : (
+      )}
+      {/* Desktop background image (hidden on mobile) */}
+      {desktopImgSrc && (
+        <Image
+          src={desktopImgSrc}
+          alt={heroImageDesktop?.alt ?? name}
+          fill
+          priority
+          className="hidden md:block object-cover opacity-70"
+          style={{ objectPosition: '50% 20%' }}
+          sizes="100vw"
+        />
+      )}
+      {!mobileImgSrc && !desktopImgSrc && (
         <div className="absolute inset-0 bg-gradient-to-br from-[#2A2D1E] to-[#1a1c12]" />
       )}
 

@@ -21,6 +21,7 @@ export default async function HomePage() {
         name={homepage?.hero?.name}
         subtitleItems={homepage?.hero?.subtitleItems}
         heroImage={homepage?.hero?.heroImage}
+        heroImageDesktop={homepage?.hero?.heroImageDesktop}
         quoteText={homepage?.hero?.quoteText}
         quoteAuthor={homepage?.hero?.quoteAuthor}
         navItems={navItems}

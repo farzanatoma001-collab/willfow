@@ -5,6 +5,7 @@ export const homepageQuery = groq`*[_type == "homepage"][0]{
     name,
     subtitleItems,
     heroImage{ asset, alt },
+    heroImageDesktop{ asset, alt },
     quoteText,
     quoteAuthor
   },

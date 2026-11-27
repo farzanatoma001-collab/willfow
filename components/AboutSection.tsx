@@ -89,13 +89,13 @@ export default function AboutSection({
         </div>
 
         {/*
-          Mobile: single column — each card full width, clearly visible.
-          sm+: two columns — left card row-span-2 (tall portrait), right cards landscape.
+          Row 1: Choir of Man spans full width — landscape image shown complete.
+          Row 2: SIFF + Green Room side by side.
         */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+        <div className="grid grid-cols-2 gap-2">
           {workItems[0] && (
-            <div className="overflow-hidden aspect-[4/3] sm:aspect-auto sm:row-span-2">
-              <WorkCard item={workItems[0]} className="h-full" objectPosition="center top" />
+            <div className="col-span-2 aspect-[3/2] overflow-hidden">
+              <WorkCard item={workItems[0]} className="h-full" objectPosition="center center" />
             </div>
           )}
           {workItems[1] && (
