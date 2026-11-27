@@ -37,26 +37,26 @@ export default function AboutSection({
   return (
     <section className="bg-[#EDE8DC] flex flex-col lg:flex-row">
 
-      {/* ── LEFT: portrait strip + about text ─── 40% wide on desktop ── */}
-      <div className="lg:w-2/5 flex flex-row lg:border-r border-[#d4cfc5]">
+      {/* ── LEFT: portrait full width, text underneath ─── 40% wide on desktop ── */}
+      <div className="lg:w-2/5 flex flex-col lg:border-r border-[#d4cfc5]">
 
-        {/* Portrait — fixed-width strip beside text on all screen sizes */}
-        <div className="w-36 sm:w-48 lg:w-56 flex-shrink-0 relative self-stretch min-h-[220px]">
+        {/* Portrait — full width of the left column */}
+        <div className="relative w-full aspect-[4/5]">
           {portraitSrc ? (
             <Image
               src={portraitSrc}
               alt={portraitImage?.alt ?? 'Will Fowler'}
               fill
               className="object-cover object-top"
-              sizes="(max-width: 640px) 144px, (max-width: 1024px) 192px, 224px"
+              sizes="(max-width: 1024px) 100vw, 40vw"
             />
           ) : (
             <div className="absolute inset-0 bg-[#c8c3b8]" />
           )}
         </div>
 
-        {/* About text */}
-        <div className="flex flex-col justify-center px-5 sm:px-7 py-8 sm:py-10 lg:px-10 lg:py-16 flex-1">
+        {/* About text — underneath the portrait */}
+        <div className="flex flex-col px-7 py-8 lg:px-10 lg:py-10">
           <div className="mb-4 sm:mb-5">
             {taglineLines.map((line, i) => (
               <p
