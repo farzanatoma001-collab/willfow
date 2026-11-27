@@ -37,11 +37,14 @@ export default function AboutSection({
   return (
     <section className="bg-[#EDE8DC] flex flex-col lg:flex-row">
 
-      {/* ── LEFT: portrait full width, text underneath ─── 40% wide on desktop ── */}
+      {/* ── LEFT: portrait fills same height as work grid, text underneath ─── 40% wide on desktop ── */}
       <div className="lg:w-2/5 flex flex-col lg:border-r border-[#d4cfc5]">
 
-        {/* Portrait — full width of the left column */}
-        <div className="relative w-full aspect-[4/5]">
+        {/* Top gap — matches right side pt-6 lg:pt-14 */}
+        <div className="h-6 lg:h-14 flex-shrink-0" />
+
+        {/* Portrait — flex-1 so it fills the same height as the work cards on the right */}
+        <div className="relative flex-1 min-h-[280px] overflow-hidden">
           {portraitSrc ? (
             <Image
               src={portraitSrc}
