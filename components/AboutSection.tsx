@@ -58,7 +58,7 @@ export default function AboutSection({
         </div>
 
         {/* About text — underneath the portrait */}
-        <div className="flex flex-col px-7 py-8 lg:px-10 lg:py-10">
+        <div className="flex flex-col px-7 pt-4 pb-8 lg:px-10 lg:pt-5 lg:pb-10">
           <div className="mb-4 sm:mb-5">
             {taglineLines.map((line, i) => (
               <p
