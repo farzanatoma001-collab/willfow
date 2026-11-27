@@ -76,7 +76,7 @@ export default function HeroSection({
         <div className="flex-1 flex flex-col justify-center pb-16 md:pb-20">
           <h1
             className="font-serif text-white leading-none tracking-tight"
-            style={{ fontSize: 'clamp(3.5rem, 11vw, 8.5rem)', fontWeight: 300 }}
+            style={{ fontSize: 'clamp(3.5rem, 8vw, 6rem)', fontWeight: 300 }}
           >
             {name.split(' ').map((word, i) => (
               <span key={i} className="block">{word}</span>
