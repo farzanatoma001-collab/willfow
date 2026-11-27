@@ -36,12 +36,13 @@ export default function PianoStudioSection({
         src="/images/piano-bg.jpg"
         alt=""
         fill
-        className="object-cover object-right opacity-60"
+        className="object-cover opacity-80"
+        style={{ objectPosition: 'right bottom' }}
         priority={false}
         sizes="50vw"
       />
       {/* Dark overlay so text stays readable */}
-      <div className="absolute inset-0 bg-[#2A2D1E]/70" />
+      <div className="absolute inset-0 bg-[#2A2D1E]/55" />
 
       <div className="relative z-10 w-full flex flex-col md:flex-row md:items-center gap-8 md:gap-10 px-8 py-12 md:px-10 md:py-20 lg:px-12">
 
