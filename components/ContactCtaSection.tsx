@@ -41,7 +41,9 @@ export default function ContactCtaSection({
           className="font-serif text-white leading-tight mb-4"
           style={{ fontSize: 'clamp(1.8rem, 4vw, 3.5rem)', fontWeight: 400 }}
         >
-          {heading}
+          {heading.includes('WORK') ? (
+            <>{heading.split('WORK')[0]}WORK<br />TOGETHER.</>
+          ) : heading}
         </h2>
         <p className="text-white/60 text-sm font-sans mb-8 max-w-xs">{subtext}</p>
         <Link
