@@ -37,15 +37,32 @@ export default function AboutSection({
   return (
     <section className="bg-[#EDE8DC] flex flex-col lg:flex-row">
 
-      {/* ── LEFT: portrait fills same height as work grid, text underneath ─── 40% wide on desktop ── */}
+      {/* ── LEFT: portrait sized to exactly match Choir of Man height ─── 40% wide on desktop ── */}
       <div className="lg:w-2/5 flex flex-col lg:border-r border-[#d4cfc5]">
 
-        {/* Top gap — pt-14 (right side) + SELECTED WORK label row (~44px) to align with first card */}
-        <div className="h-6 lg:h-[100px] flex-shrink-0" />
+        {/*
+          .portrait-box on desktop:
+            margin-top: 96px  = pt-14 (56px) + SELECTED WORK row (~40px) → aligns with Choir of Man top
+            height: calc((60vw - 2rem) * 2/3) = right column width minus pr-8, × aspect-[3/2]
+            padding-left / padding-bottom: match right side's pr-8 and pb-14
+          On mobile: aspect-square with standard small gaps.
+        */}
+        <style>{`
+          @media (min-width: 1024px) {
+            .portrait-box {
+              margin-top: 96px;
+              padding-left: 2rem;
+              padding-bottom: 3.5rem;
+            }
+            .portrait-box .portrait-inner {
+              height: calc((60vw - 2rem) * 2 / 3);
+              aspect-ratio: unset;
+            }
+          }
+        `}</style>
 
-        {/* Portrait — flex-1 fills height; pl/pb match right side's pr and pb */}
-        <div className="flex-1 min-h-[280px] pl-6 lg:pl-8 pb-6 lg:pb-14">
-          <div className="relative h-full overflow-hidden">
+        <div className="portrait-box pt-6 pl-6 pb-6">
+          <div className="portrait-inner relative overflow-hidden aspect-square">
             {portraitSrc ? (
               <Image
                 src={portraitSrc}
