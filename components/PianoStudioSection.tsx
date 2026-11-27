@@ -30,8 +30,20 @@ export default function PianoStudioSection({
   const line3 = words.slice(3).join(' ')
 
   return (
-    <section className="bg-[#2A2D1E] w-full h-full flex items-center min-h-[55vh] lg:min-h-[70vh]">
-      <div className="w-full flex flex-col md:flex-row md:items-center gap-8 md:gap-10 px-8 py-12 md:px-10 md:py-20 lg:px-12">
+    <section className="relative bg-[#2A2D1E] w-full h-full flex items-center min-h-[55vh] lg:min-h-[70vh] overflow-hidden">
+      {/* Piano background image */}
+      <Image
+        src="/images/piano-bg.jpg"
+        alt=""
+        fill
+        className="object-cover object-right opacity-60"
+        priority={false}
+        sizes="50vw"
+      />
+      {/* Dark overlay so text stays readable */}
+      <div className="absolute inset-0 bg-[#2A2D1E]/70" />
+
+      <div className="relative z-10 w-full flex flex-col md:flex-row md:items-center gap-8 md:gap-10 px-8 py-12 md:px-10 md:py-20 lg:px-12">
 
         {/* WF signature logo */}
         <div className="flex-shrink-0 w-32 md:w-32 lg:w-36 mx-auto md:mx-0">
